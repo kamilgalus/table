@@ -43,7 +43,7 @@ namespace TabelaiPionki
 
         public char[] UstawPionek(int pozycja, char[] tabela, char pion)   //Funkcja ustawiajaca pionek w podanym przez uzytkowniak miejscu w tabeli 
         {
-            pozycja = pozycja - 1;                                         //ponieważ indeksowanie tablicy zaczyna się od 0
+            pozycja = (pozycja - 1);                                         //ponieważ indeksowanie tablicy zaczyna się od 0
             tabela[pozycja] = pion;
             return tabela;
         }
