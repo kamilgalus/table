@@ -1,59 +1,50 @@
 ﻿using System;
 
 
-namespace TablicaiPionki
+namespace TabelaiPionki
 {
     class Pionek : Tablica             //Klasa którą posługuję się do stworzenia jednego obiektu z którgo tablicy będę korzystał i 5 obiektów(zawartych w tabliocy) z których będę korzystał jako pionków
     {
         public char pionek = '#';
 
-
-
-        public Pionek()
+       
+        public int PodajPozycjePionka(char[] tablica)  // Funkcja pyta gdzie postawić pionek/sprawdza możliowśc i zwraca miejsce wybrane przez użtykownika 
         {
-            for (int i = 0; i < tabela.Length; i++)      //Konstruktor wypełniający tablice znakami "#"
-            {
-                tabela[i] = '#';
-            }
-
-        }
-
-
-
-        public int PodajPozycjePionka()
-        {
-            int liczba = 0;          // Zmienna ktora będzie przechowywać liczbę odpowiadającą indeksowi tabeli na ktorej stanie pionek
+            int pozycjaPionka = 0;       // Zmienna ktora bedzie zwracana jako miejsce w TabelaGlowna
+           
             do
             {
                 try
                 {
-
                     Console.WriteLine("Podaj pozycje na której chcesz ustawić pionek [1-5]: ");
-                    liczba = int.Parse(Console.ReadLine());
+                    pozycjaPionka = int.Parse(Console.ReadLine());
                 }
-                catch (System.FormatException ex)                //Zgłoszenie wyjątku w razie nie wpisania cyfry 
+                catch(System.FormatException ex)
                 {
-                    Console.WriteLine("Nie wprowadziles cyfry", ex);
-                }
-                if (liczba >= 1 && liczba <= 5)                  //jeśli liczba mieści się w przedziale to ją zwróć, jeśli nie to (warunek while jest spełniony) powtarza czynnosc 
-                {
-                    return liczba;
+                    Console.WriteLine("Nie wprowadziles cyfry", ex);               
                 }
 
-
+                if (pozycjaPionka >= 1 && pozycjaPionka <= 5)                  //jeśli liczba mieści się w przedziale to ją zwróć, jeśli nie to (warunek while jest spełniony) powtarza czynnosc 
+                {
+                    if (tablica[pozycjaPionka - 1] == '#')                     //Sprawdzenie czy na danym miesjcu w tabeli stoi pionek 
+                    {
+                        Console.WriteLine("To miejsce jest już zajęte!");  
+                    }
+                    else
+                    return pozycjaPionka;
+                }
             }
-            while (liczba >= 0);
-
-            return liczba;
-
+            while (pozycjaPionka >= 0);
+            
+            return pozycjaPionka;
         }
 
 
 
-        public char[] UstawPionek(int i, char[] tabela, char pion)   //Funkcja ustawiajaca pionek w podanym przez uzytkowniak miejscu w tabeli 
+        public char[] UstawPionek(int pozycja, char[] tabela, char pion)   //Funkcja ustawiajaca pionek w podanym przez uzytkowniak miejscu w tabeli 
         {
-            i = i - 1;
-            tabela[i] = pion;
+            pozycja = pozycja - 1;                                         //ponieważ indeksowanie tablicy zaczyna się od 0
+            tabela[pozycja] = pion;
             return tabela;
         }
     }
