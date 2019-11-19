@@ -17,15 +17,10 @@ namespace TablicObiektowa
                 Console.Clear();
             }
             while (tablica.CzyZapisanaTablica() == false);
-            {
-                
+            {          
                 tablica.WyswietlTablice();
                 tablica.PokazMiejscaPionkow();
-
-            }
-
-            
-
+            }          
         }
     }
 }

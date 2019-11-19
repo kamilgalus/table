@@ -6,13 +6,15 @@ namespace TablicObiektowa
 {
     class Tablica
     {
-        private char[] tablicaGlowna = new char[5];      
+        private char[] tablicaGlowna = new char[5];
+        private char[] tablicaPusta = new char[5];
         private Pionek[] tablicaPionkow = new Pionek[5];
         public Tablica()
         {
             for (int i = 0; i < tablicaGlowna.Length; i++)
             {
-                tablicaGlowna[i] = '_';              
+                tablicaGlowna[i] = '_';
+                tablicaPusta[i] = '_';
             }
 
             for (int i = 0; i < tablicaPionkow.Length; i++)
@@ -23,7 +25,7 @@ namespace TablicObiektowa
 
         public void WyswietlTablice()
         {
-            Console.Write("\t\t");
+            Console.Write("\t\t");           
             for (int i = 0; i < tablicaGlowna.Length; i++)
             {
                 Console.Write(tablicaGlowna[i]);
@@ -63,7 +65,7 @@ namespace TablicObiektowa
                     try
                     {
 
-                        Console.WriteLine("\nPodaj pozycje na której chcesz ustawić {0} pionek [1-5]: ", nrPionka + 1);
+                        Console.Write("\nPodaj pozycje na której chcesz ustawić {0} pionek [1-5]: ", nrPionka + 1);
                         miejsceP = int.Parse(Console.ReadLine());
                     }
                     catch (FormatException ex)
@@ -121,11 +123,28 @@ namespace TablicObiektowa
             Console.WriteLine();
             for (int i = 0; i < tablicaPionkow.Length; i++)
             {
-                Console.WriteLine("Pionek nr.{0} znajduje się na {1} miejscu.",i+1, tablicaPionkow[i].PokazMiejsce()); 
+                Console.Write("Pionek nr.{0} znajduje się na {1} miejscu.  ",i+1, tablicaPionkow[i].PokazMiejsce());
+                PionekNaPlanszy(tablicaPionkow[i].PokazMiejsce());
+                Console.WriteLine();
+                           
             }
         }
 
-      
+        
+        public void PionekNaPlanszy(int miejscePionka)
+        {
+            char[] tablica = new char[5];            
+            for (int i = 0; i < tablica.Length; i++)
+            {
+                tablica[i] = '_';
+            }
+            tablica[miejscePionka-1] = '#';
 
+            
+            for (int i = 0; i < tablica.Length; i++)
+            {                
+                Console.Write(tablica[i]);
+            }                      
+        }             
     }
 }

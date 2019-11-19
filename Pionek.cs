@@ -17,6 +17,7 @@ namespace TablicObiektowa
         {
             return miejscePionka;
         }
-            
+
+        
     }
 }
